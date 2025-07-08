@@ -31,5 +31,9 @@ app.get('/about', serveFrontend)
 
 
 app.use('/api', APIRouter);
-//console.log(typeof process.env.PORT);
-app.listen(parseInt(process.env.PORT,10));
+
+const PORT = parseInt(process.env.PORT, 10);
+const portToUse = (!isNaN(PORT) && PORT > 0 && PORT < 65536) ? PORT : 3000;
+app.listen(portToUse, () => {
+  console.log(`Server running on port ${portToUse}`);
+});

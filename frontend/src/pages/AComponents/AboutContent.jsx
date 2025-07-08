@@ -6,7 +6,8 @@ const AboutContent = () => {
     {name: "Anuj", email: "anuj21@iitk.ac.in"},
     {name: "Chinmay Amrutkar", email: "chinmayma21@iitk.ac.in"},
     {name: "Goutam Das", email: "goutamd21@iitk.ac.in"},
-    {name: "A. Atulya Sundaram", email: "aatulya21@iitk.ac.in"}
+    {name: "A. Atulya Sundaram", email: "aatulya21@iitk.ac.in"},
+    {name: "Prathamesh Ladhe", email: "prathamesh22@iitk.ac.in"}
   ]
   const ratingSubmission = (data) => {
     return data
