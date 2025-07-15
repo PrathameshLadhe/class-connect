@@ -6,7 +6,7 @@ const helper=require('./helper.js');
 
 let n=data.length
 
-const semester="23-24 EVEN";
+const semester="25-26 ODD";
 const URL="http://localhost:3000/api/courses"
 
 let i=0;

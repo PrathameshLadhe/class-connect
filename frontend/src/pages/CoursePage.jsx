@@ -78,8 +78,12 @@ function CoursePage() {
       return score
     }
     const scoreArray = coursesArr.map((item) => { return {score: getRelevance(item), value: item}})
-    scoreArray.sort((a, b) => b.score - a.score)
-    return scoreArray.map((item) => item.value)
+    
+    // Filter out items with zero score when there's a search query
+    const filteredArray = query.trim() === '' ? scoreArray : scoreArray.filter(item => item.score > 0)
+    
+    filteredArray.sort((a, b) => b.score - a.score)
+    return filteredArray.map((item) => item.value)
   }
   
   const viewcourses = orderByPriority(courses).slice(0, showAll? courses.length: Math.min(courses.length, 20))

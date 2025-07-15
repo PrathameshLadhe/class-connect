@@ -71,8 +71,12 @@ function ProfPage() {
       return score
     }
     const scoreArray = profsArray.map((item) => { return {score: getRelevance(item), value: item}})
-    scoreArray.sort((a, b) => b.score - a.score)
-    return scoreArray.map((item) => item.value)
+    
+    // Filter out items with zero score when there's a search query
+    const filteredArray = query.trim() === '' ? scoreArray : scoreArray.filter(item => item.score > 0)
+    
+    filteredArray.sort((a, b) => b.score - a.score)
+    return filteredArray.map((item) => item.value)
   }
   
   const viewProfs = orderByPriority(profs).slice(0, showAll? profs.length: Math.min(profs.length, 20))

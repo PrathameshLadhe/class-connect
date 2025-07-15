@@ -14,12 +14,9 @@ function MainPage() {
   const [ myCourses, setMyCourses ] = useState([])
   const [ allCourses, setAllCourses ] = useState([])
   const [ dataLoaded, setDataLoaded ] = useState(false)
-  const month = new Date().getMonth()
-  const sem = (month > 8 || month <= 2) ? "ODD": "ODD" // EVEN - OCT to FEB, ODD otherwise 
-  const year = (new Date().getFullYear()) % 100
-  const ay = month <= 2 ? `${year-1}-${year}`: `${year}-${year+1}`
-  const currSem = encodeURIComponent(`${ay} ${sem}`)
-  const baseUrl = `/api/courses?semester=${currSem}`
+  
+  // Use the available semester data instead of calculating current semester
+  const baseUrl = `/api/courses`
   useEffect(() => {
     axios
     .get(baseUrl)

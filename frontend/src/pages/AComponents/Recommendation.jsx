@@ -78,16 +78,20 @@ function orderByPriority(filters, courses){
     const TokenizedPrompt = tokenizer(query)
     const SCode = (countOfWords(tokenizer(item.code), TokenizedPrompt)) * 50
     const SName = (countOfWords(tokenizer(item.name), TokenizedPrompt)) * 8
-    const SProf1 = (countOfWords(tokenizer(item.prof1.name), TokenizedPrompt)) * 15
-    const SProf2 = (countOfWords(tokenizer(item.prof2.name), TokenizedPrompt)) * 15
-    const SRating = (item.ratings ** 0.5)
+    const SProf1 = (countOfWords(tokenizer(item.prof1 ? item.prof1.name : ''), TokenizedPrompt)) * 15
+    const SProf2 = (countOfWords(tokenizer(item.prof2 ? item.prof2.name : ''), TokenizedPrompt)) * 15
+    const SRating = Math.max(1, (item.ratings || 1) ** 0.5)
 
     const score = (SCode + SName + SProf1 + SProf2) * SRating
     return score
   }
   const scoreArray = courses.map((item) => { return {score: getRelevance(item), value: item}})
-  scoreArray.sort((a, b) => b.score - a.score)
-  return scoreArray.map((item) => item.value)
+  
+  // Filter out items with zero score when there's a search query
+  const filteredArray = query.trim() === '' ? scoreArray : scoreArray.filter(item => item.score > 0)
+  
+  filteredArray.sort((a, b) => b.score - a.score)
+  return filteredArray.map((item) => item.value)
 }
 
 function Recommendation(props) {
