@@ -1,0 +1,17 @@
+{
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/api",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/((?!assets/|vite.svg).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
