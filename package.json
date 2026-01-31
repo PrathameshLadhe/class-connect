@@ -4,7 +4,8 @@
   "description": "This project aims to help IITK students in knowing about the courses being offered so that they can wisely choose their preferred courses.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
